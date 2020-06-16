@@ -1,4 +1,4 @@
-const tfjs = require('@tensorflow/tfjs');
+const tfjs = require('@tensorflow/tfjs-node');
 const posenet = require('@tensorflow-models/posenet');
 const canvas = require('canvas');
 const fs = require('fs');
