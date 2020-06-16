@@ -65,7 +65,13 @@ async function startScript() {
     const img = await canvas.loadImage(files[i]);
     ctx.drawImage(img, 0, 0, WIDTH, HEIGHT);
     net = await getNet();
-    const pose = await net.estimateSinglePose(cv);
+
+    const pose = await net.estimateMultiplePoses(cv, {
+      flipHorizontal: false,
+      maxDetections: 5,
+      scoreThreshold: 0.5,
+      nmsRadius: 20
+    });
 
     if(i != files.length - 1) {
       fs.writeSync(fd, `"${files[i]}"` + ':' + JSON.stringify(pose) + ",\n");
